@@ -1,7 +1,9 @@
-![](https://img.shields.io/badge/sdk-v85-green-+) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![](https://img.shields.io/badge/sdk-v85-green) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 # sparkar-procedural-pattern
 > an example of how to derive a procedural texture pattern in spark-ar via script.
+
+source: [script](./src/index.js)
 
 ![preview-1](./preview-1.jpg)
 
