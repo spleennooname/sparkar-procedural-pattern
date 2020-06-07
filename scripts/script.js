@@ -1,6 +1,6 @@
 /**
- * Procedural texture with
- * v85+
+ * Procedural texture with SparkAR Reactive Script (v85+)
+ * an example by Andrea Bovo <https://github.com/spleennooname>
  */
 
 // modules
@@ -9,9 +9,9 @@ const Time = require('Time')
 const M = require('Materials')
 const T = require('Textures')
 const Shaders = require('Shaders')
-const CameraInfo = require('CameraInfo')
+// const CameraInfo = require('CameraInfo')
 
-// rotate
+// rotate: uv coords and angle(radians, of course)
 const rotate2d = (uv, angle) => {
   const cos = Math.cos(angle)
   const sin = Math.sin(angle)
@@ -28,12 +28,13 @@ const rotate2d = (uv, angle) => {
   return uv
 }
 
+// get a correct grey-scale value from texture sample
 const luma = sample => {
   const l = R.dot(R.pack4(0.299, 0.587, 0.114, 1), R.pack4(sample.x, sample.y, sample.z, sample.w))
   return R.pack4(l, l, l, sample.w)
 }
 
-// main
+// main stuff
 Promise.all([
   M.findFirst('cameraMat'),
   T.findFirst('cameraTexture0'),
@@ -50,7 +51,8 @@ Promise.all([
     }))
 
     const time = Time.ms.mul(0.01)
-    // pattern
+
+    // play with params ;)
     const levels = 5.7
     const angle = Math.PI / levels
     const spacing = 0.014
@@ -60,6 +62,7 @@ Promise.all([
     const width = 0.005
     const dist = 0.10
 
+    // create a procedural pattern.
     const pattern = (color, uv, time) => {
       let result = R.pack4(1, 1, 1, 1)
       const sample = luma(Shaders.textureSampler(color, uv))
@@ -77,6 +80,7 @@ Promise.all([
       return R.smoothStep(result, 0.0, 0.95)
     }
 
+    // play with hardcoded values for change pattern
     const displacementFactor = R.val(2.0).add(R.sin(time.mul(0.025)).mul(1.0))
     const frequency = R.abs(R.sin(time.mul(0.01)).mul(20))
 
@@ -89,6 +93,6 @@ Promise.all([
         Shaders.composition(patternSignal, uv.add(displacementOffset))
       )
     }
-
+    // render things
     render(matSignal, uv, time)
   })
