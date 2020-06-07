@@ -3,7 +3,7 @@
 # sparkar-procedural-pattern
 > an example of how to derive a procedural texture pattern in spark-ar via script.
 
-source: [script](./src/index.js)
+source: [script](./scripts/script.js)
 
 ![preview-1](./preview-1.jpg)
 
