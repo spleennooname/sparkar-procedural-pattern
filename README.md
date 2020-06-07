@@ -7,4 +7,4 @@ source: [script](./src/index.js)
 
 ![preview-1](./preview-1.jpg)
 
-![preview-2](./preview-2.jpg)
+![preview-2](./preview-2.jpeg)
